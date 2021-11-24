@@ -10,7 +10,9 @@
     <script>
         (async () => {
     const wasm = await import("http://127.0.0.1:5500/violet-wasm/pkg/violet_wasm.js");
-    console.log(wasm);
+    const pkg = await wasm.default();
+    pkg.greet();
+    console.log(pkg);
 })();
     </script>
 </body>
