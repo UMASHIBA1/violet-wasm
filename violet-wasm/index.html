@@ -1,19 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-    <script>
-        (async () => {
-    const wasm = await import("http://127.0.0.1:5500/violet-wasm/pkg/violet_wasm.js");
-    const pkg = await wasm.default();
-    pkg.greet();
-    console.log(pkg);
-})();
+  </head>
+  <body>
+    <canvas id="canvas" width="800" height="600"> </canvas>
+    <script type="module">
+      import init, * as wam from "http://127.0.0.1:5500/pkg/violet_wasm.js";
+
+      (async () => {
+        let html = `<div class="a">
+    <div class="b">
+        <div class="c">
+            <div class="d">
+                <div class="e">
+                    <div class="f">
+                        <div class="g">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+`;
+
+        let css = `* { display: block; padding: 12px; }
+.a { background: #ff0000; }
+.b { background: #ffa500; }
+.c { background: #ffff00; }
+.d { background: #008000; }
+.e { background: #0000ff; }
+.f { background: #4b0082; }
+.g { background: #800080; }
+`;
+        await init("./pkg/violet_wasm_bg.wasm");
+        window.wam = wam;
+        wam.main(html, css);
+        // const pkg = await wasm.default();
+
+        // pkg.main(html, css);
+        // console.log(pkg);
+      })();
     </script>
-</body>
+  </body>
 </html>
